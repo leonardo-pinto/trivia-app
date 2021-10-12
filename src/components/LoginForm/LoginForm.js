@@ -12,7 +12,6 @@ class LoginForm extends Component {
       username: '',
     };
     this.handleInput = this.handleInput.bind(this);
-    this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
     this.inputValidation = this.inputValidation.bind(this);
   }
 
@@ -20,12 +19,6 @@ class LoginForm extends Component {
     this.setState({
       [name]: value,
     }, () => this.inputValidation());
-  }
-
-  handlePlayButtonClick() {
-    const { username, email } = this.state;
-    const { loginData } = this.props;
-    loginData({ username, email });
   }
 
   inputValidation() {
@@ -37,7 +30,8 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { enablePlayButton } = this.state;
+    const { enablePlayButton, email, username } = this.state;
+    const { userLogin } = this.props;
 
     return (
       <form>
@@ -57,6 +51,7 @@ class LoginForm extends Component {
             name="email"
             type="text"
             id="email"
+            data-testid="email-input"
             placeholder="Insert your email"
             onChange={(e) => this.handleInput(e)}
           />
@@ -66,7 +61,7 @@ class LoginForm extends Component {
             type="button"
             data-testid="btn-play"
             disabled={!enablePlayButton}
-            onClick={this.handlePlayButtonClick}
+            onClick={() => userLogin({ username, email })}
           >
             Start game
           </button>
@@ -83,11 +78,11 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loginData: (payload) => dispatch(login(payload)),
+  userLogin: (payload) => dispatch(login(payload)),
 });
 
 export default connect(null, mapDispatchToProps)(LoginForm);
 
 LoginForm.propTypes = {
-  loginData: PropTypes.func.isRequired,
+  userLogin: PropTypes.func.isRequired,
 };

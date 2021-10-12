@@ -1,7 +1,7 @@
 import { LOGIN } from '../actions/loginActions';
 
 const initialState = {
-  user: '',
+  username: '',
   email: '',
   gravatarImage: '',
   token: '',
