@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -18,5 +19,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/jsx-filename-extension': [0],
+    'import/extensions': 'off',
+    'react/prefer-stateless-function': 'off',
   },
 };
