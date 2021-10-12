@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const loginReducer = (state = initialState, action) => {
-  console.log('login reducer');
   switch (action.type) {
     case LOGIN:
       return {
